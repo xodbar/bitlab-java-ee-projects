@@ -1,0 +1,49 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #19259b;
+}
+
+header {
+    width: 100%;
+    background-color: #2234ee;
+    color: white;
+}
+
+.header {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav {
+    margin-left: auto;
+}
+
+.nav_links {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.nav_links li {
+    margin-left: 25px;
+}
+
+.nav_links li a {
+    text-decoration: none;
+    color: white;
+}
+
+.wrapper {
+    width: 90%;
+    background-color: white;
+    border-radius: 25px;
+    min-height: 150px;
+    margin: auto;
+    padding: 15px;
+}
