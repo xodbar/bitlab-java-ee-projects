@@ -1,4 +1,4 @@
-package lectures.lecture2.servlets.task1.entities;
+package lectures.lecture2.task1.entities;
 
 public class NewsArticle {
     private String title;

@@ -1,5 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="lectures.lecture2.servlets.task1.entities.NewsArticle" %><%--
+<%@ page import="lectures.lecture2.task1.entities.NewsArticle" %><%--
   Created by IntelliJ IDEA.
   User: admin
   Date: 19.05.2022

@@ -1,10 +1,9 @@
-package lectures.lecture2.servlets.task1;
+package lectures.lecture2.task1.servlets;
 
-import lectures.lecture2.servlets.task1.db.DBManager;
-import lectures.lecture2.servlets.task1.entities.NewsArticle;
+import lectures.lecture2.task1.db.DBManager;
+import lectures.lecture2.task1.entities.NewsArticle;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,6 +1,6 @@
-package lectures.lecture2.servlets.task1.db;
+package lectures.lecture2.task1.db;
 
-import lectures.lecture2.servlets.task1.entities.NewsArticle;
+import lectures.lecture2.task1.entities.NewsArticle;
 
 import java.util.ArrayList;
 

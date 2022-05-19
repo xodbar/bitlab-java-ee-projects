@@ -10,10 +10,19 @@
     
     <servlet>
         <servlet-name>Lec2Task1</servlet-name>
-        <servlet-class>lectures.lecture2.servlets.task1.RequestHandler</servlet-class>
+        <servlet-class>lectures.lecture2.task1.servlets.RequestHandler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Lec2Task1</servlet-name>
         <url-pattern>/lec2task1</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Lec2Task2</servlet-name>
+        <servlet-class>lectures.lecture2.task2.servlets.TaskServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Lec2Task2</servlet-name>
+        <url-pattern>/lec2task2</url-pattern>
     </servlet-mapping>
 </web-app>
