@@ -8,6 +8,11 @@
         <welcome-file>/index.jsp</welcome-file>
     </welcome-file-list>
     
+    <error-page>
+        <error-code>404</error-code>
+        <location>/other/service/404.html</location>
+    </error-page>
+    
     <servlet>
         <servlet-name>Lec2Task1</servlet-name>
         <servlet-class>lectures.lecture2.task1.servlets.RequestHandler</servlet-class>
@@ -24,5 +29,14 @@
     <servlet-mapping>
         <servlet-name>Lec2Task2</servlet-name>
         <url-pattern>/lec2task2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Lec3Task1</servlet-name>
+        <servlet-class>lectures.lecture3.servlets.StudentManagementServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Lec3Task1</servlet-name>
+        <url-pattern>/lec3task1</url-pattern>
     </servlet-mapping>
 </web-app>

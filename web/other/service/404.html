@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Not Found | Java EE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/145e892520.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("https://i.pinimg.com/originals/9b/be/f1/9bbef145122eeaa58887d34ed809a4e6.jpg");
+            background-size: cover;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .container {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error_log {
+            padding: 10px;
+            color: white;
+        }
+
+        .error_texts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .error_code {
+            font-size: 300%;
+        }
+
+        .error_code h1 {
+            margin: 0;
+        }
+
+        .error_text {
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.56);
+            padding: 5px 15px;
+            border-radius: 10px;
+        }
+
+        .error_log .error_image {
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .error_log .error_image img {
+            width: 100%;   position:relative;
+            -webkit-animation:glide 2s ease-in-out alternate infinite;
+            pointer-events: none; user-select: none;
+        }
+
+        @-webkit-keyframes glide  {
+            from {
+                left:0;
+                top:0;
+            }
+
+            to {
+                left:0;
+                top:20px;
+            }
+
+        }
+
+        .kek {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .kek i {
+            font-size: 450%;
+            margin-right: 25px;
+        }
+
+        .error_text a {
+            color: white;
+            text-decoration: underline white;
+
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="container">
+        <div class="error_log">
+            <div class="error_texts">
+                <div class="error_text">
+                    <div class="kek">
+                        <h1>Page not found...</h1>
+                        <i class="fa-solid fa-bug"></i>
+                    </div>
+                    <hr>
+                    <p>
+                        You weren't supposed to see this:
+                        The page you're looking for no longer exists.
+                        Return to the <a href="../../index.jsp">home page</a> and remember: you haven't seen anything.
+                    </p>
+                </div>
+                <div class="error_code">
+                    <h1>404</h1>
+                </div>
+            </div>
+            <div class="error_image">
+                <img src="https://vfxrio.com.br/wp-content/uploads/revslider/404-Error-Space-Theme/astronaut.png"
+                     alt="cosmonaut">
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
