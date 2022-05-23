@@ -43,6 +43,33 @@ public class DBManager {
         }
     }
 
+    public static Student getStudentById(Long id) {
+        Student student = new Student();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM students WHERE student_id=?"
+            );
+
+            statement.setLong(1, id);
+
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                student.setStudentId(result.getLong("student_id"));
+                student.setStudentName(result.getString("student_name"));
+                student.setSurname(result.getString("student_surname"));
+                student.setBirthDate(result.getString("student_birth_date"));
+                student.setCity(result.getString("student_city"));
+            }
+        } catch (SQLException e) {
+            System.out.println("SQL ERROR WHILE GETTING STUDENT BY ID: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("UNHANDLED ERROR WHILE GETTING STUDENT BY ID: " + e.getMessage());
+        }
+
+        return student;
+    }
+
     public static ArrayList<Student> getAllStudents() {
         ArrayList<Student> students = new ArrayList<>();
 

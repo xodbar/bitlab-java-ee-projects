@@ -39,8 +39,8 @@
                 </select>
             </div>
             <div class="form-group" style="display:flex; justify-content: space-between; flex-wrap: wrap">
-                <button type="submit" class="btn btn-primary">Add</button>
-                <a href="${pageContext.request.contextPath}/lec3task1" class="btn btn-secondary w-25">Back to List</a>
+                <button type="submit" class="btn btn-primary col-sm">Add</button>
+                <a href="${pageContext.request.contextPath}/lec3task1" class="btn btn-secondary col-sm">Back to List</a>
             </div>
         </form>
     </div>

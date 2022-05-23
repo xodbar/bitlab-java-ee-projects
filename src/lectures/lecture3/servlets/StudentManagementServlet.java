@@ -35,8 +35,19 @@ public class StudentManagementServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.setAttribute("students", DBManager.getAllStudents());
-            request.getRequestDispatcher("/lectures/lecture3/task1/index.jsp").forward(request, response);
+            if (request.getParameter("command") != null) {
+                if (request.getParameter("command").equals("details")) {
+                    request.setAttribute("student",
+                            DBManager.getStudentById(Long.parseLong(request.getParameter("id"))));
+                    request.getRequestDispatcher("/lectures/lecture3/task1/student_details.jsp")
+                            .forward(request, response);
+                } else {
+                    response.sendRedirect("./other/service/404.html");
+                }
+            } else {
+                request.setAttribute("students", DBManager.getAllStudents());
+                request.getRequestDispatcher("/lectures/lecture3/task1/index.jsp").forward(request, response);
+            }
         } catch (Exception e) {
             System.out.println("ERROR WHILE CALLING doGet: " + e.getMessage());
         }
