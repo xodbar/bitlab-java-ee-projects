@@ -11,22 +11,35 @@ public class StudentManagementServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
-            System.out.printf(
-                    "Name: %s | Surname: %s | Date: %s | City: %s", request.getParameter("student_name"),
-                    request.getParameter("student_surname"),
-                    request.getParameter("student_birth_date"),
-                    request.getParameter("student_city")
-            );
+            switch (request.getParameter("c")) {
+                case "1" -> {
+                    DBManager.addStudent(new Student(
+                            null,
+                            request.getParameter("student_name"),
+                            request.getParameter("student_surname"),
+                            request.getParameter("student_birth_date"),
+                            request.getParameter("student_city")
+                    ));
 
-            DBManager.addStudent(new Student(
-                    null,
-                    request.getParameter("student_name"),
-                    request.getParameter("student_surname"),
-                    request.getParameter("student_birth_date"),
-                    request.getParameter("student_city")
-            ));
+                    response.sendRedirect("/lec3task1");
+                }
+                case "2" -> {
+                    DBManager.overwriteStudent(new Student(
+                            Long.parseLong(request.getParameter("id")),
+                            request.getParameter("studentName"),
+                            request.getParameter("studentSurname"),
+                            request.getParameter("studentDate"),
+                            request.getParameter("studentCity")
+                    ));
 
-            response.sendRedirect("/lec3task1");
+                    response.sendRedirect("/lec3task1");
+                }
+                case "3" -> {
+                    DBManager.deleteStudent(Long.parseLong(request.getParameter("id")));
+                    response.sendRedirect("/lec3task1");
+                }
+                default -> response.sendRedirect("/404");
+            }
         } catch (Exception e) {
             System.out.println("ERROR WHILE CALLING doPost: " + e.getMessage());
         }
@@ -39,7 +52,7 @@ public class StudentManagementServlet extends HttpServlet {
                 if (request.getParameter("command").equals("details")) {
                     request.setAttribute("student",
                             DBManager.getStudentById(Long.parseLong(request.getParameter("id"))));
-                    request.getRequestDispatcher("/lectures/lecture3/task1/student_details.jsp")
+                    request.getRequestDispatcher("/lectures/lecture4/task1/student_details.jsp")
                             .forward(request, response);
                 } else {
                     response.sendRedirect("./other/service/404.html");
