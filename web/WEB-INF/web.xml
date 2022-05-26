@@ -39,4 +39,42 @@
         <servlet-name>Lec3Task1</servlet-name>
         <url-pattern>/lec3task1</url-pattern>
     </servlet-mapping>
+
+    <!-- SPRINT 1 SERVLETS START -->
+    <servlet>
+        <servlet-name>Sprint1UserQueryHandler</servlet-name>
+        <servlet-class>sprint.sprint1.servlets.UserQueryHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sprint1UserQueryHandler</servlet-name>
+        <url-pattern>/sprint1</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Sprint1LoginHandler</servlet-name>
+        <servlet-class>sprint.sprint1.servlets.LoginHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sprint1LoginHandler</servlet-name>
+        <url-pattern>/sprint1_auth</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Sprint1AdminQueryHandler</servlet-name>
+        <servlet-class>sprint.sprint1.servlets.AdminQueryHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sprint1AdminQueryHandler</servlet-name>
+        <url-pattern>/sprint1_admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Sprint1ProfilePage</servlet-name>
+        <servlet-class>sprint.sprint1.servlets.LoginHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sprint1ProfilePage</servlet-name>
+        <url-pattern>/sprint1_profile</url-pattern>
+    </servlet-mapping>
+    <!-- //SPRINT 1 SERVLETS END -->
 </web-app>
