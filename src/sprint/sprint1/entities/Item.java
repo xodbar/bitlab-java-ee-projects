@@ -6,17 +6,19 @@ public class Item {
     private String description;
     private Double price;
     private Long brandId;
+    private String brandName;
 
 
     public Item() {
     }
 
-    public Item(Long id, String name, String description, Double price, Long country_id) {
+    public Item(Long id, String name, String description, Double price, Long brandId, String brandName) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.brandId = country_id;
+        this.brandId = brandId;
+        this.brandName = brandName;
     }
 
 
@@ -58,5 +60,13 @@ public class Item {
 
     public void setBrandId(Long brandId) {
         this.brandId = brandId;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 }

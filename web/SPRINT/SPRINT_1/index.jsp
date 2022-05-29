@@ -27,8 +27,8 @@
         <c:choose>
             <c:when test="${not empty items}">
             <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-                <div class="col">
                     <c:forEach var="item" items="${items}">
+                        <div class="col">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">${item.getItemName()}</h4>
@@ -36,12 +36,12 @@
                             <div class="card-body">
                                 <h4 class="text-success size">$${item.getPrice()}</h4>
                                 <p class="card-text">${item.getDescription()}</p>
-                                <small class="small text-primary">${item.getBrandId()}</small>
+                                <small class="small text-primary">${item.getBrandName()}</small>
                                 <button class="btn btn-success w-100">Buy Now</button>
                             </div>
                         </div>
+                        </div>
                     </c:forEach>
-                </div>
             </div>
             </c:when>
             <c:otherwise>

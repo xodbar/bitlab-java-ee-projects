@@ -77,4 +77,13 @@
         <url-pattern>/sprint1_profile</url-pattern>
     </servlet-mapping>
     <!-- //SPRINT 1 SERVLETS END -->
+
+    <servlet>
+        <servlet-name>Lec4Task1</servlet-name>
+        <servlet-class>lectures.lecture4.servlets.StudentManagementServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Lec4Task1</servlet-name>
+        <url-pattern>/lec4task1</url-pattern>
+    </servlet-mapping>
 </web-app>

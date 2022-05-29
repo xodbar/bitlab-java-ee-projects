@@ -28,14 +28,16 @@ public class UserQueryHandler extends HttpServlet {
                             request.getParameter("new_user_fullName")
                     ));
 
-                    if (((User) request.getSession().getAttribute("current_user")).getUserId().
-                            equals(DBManager.getUserById(1L).getUserId())) {
-                        try {
-                            request.getRequestDispatcher("./SPRINT/SPRINT_1/admin/manage_users.jsp")
-                                    .forward(request, response);
-                        } catch (ServletException e) {
-                            e.printStackTrace();
-                            response.sendRedirect("/404");
+                    if (request.getSession().getAttribute("current_user") != null) {
+                        if (((User) request.getSession().getAttribute("current_user")).getUserId().
+                                equals(DBManager.getUserById(1L).getUserId())) {
+                            try {
+                                request.getRequestDispatcher("./SPRINT/SPRINT_1/admin/manage_users.jsp")
+                                        .forward(request, response);
+                            } catch (ServletException e) {
+                                e.printStackTrace();
+                                response.sendRedirect("/404");
+                            }
                         }
                     }
                 } else {

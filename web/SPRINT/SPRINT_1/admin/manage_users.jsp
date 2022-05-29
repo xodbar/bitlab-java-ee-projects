@@ -18,7 +18,7 @@
 <main>
     <div class="container mt-4">
         <a class="btn btn-primary w-100 mb-3 py-2 fw-bold text-center" data-bs-target="#addUser"
-           data-bs-toggle="modal" data-bs-dismiss="modal">Add new user</a>
+           data-bs-toggle="modal" data-bs-dismiss="modal">Add New User</a>
         <table class="table table-hover">
             <thead class="table-header table-primary">
             <tr>
@@ -69,7 +69,8 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="${pageContext.request.contextPath}/sprint1_admin?entity=user&command=1" method="post"
+                            <form action="${pageContext.request.contextPath}/sprint1_admin?entity=user&command=1"
+                                  method="post"
                                   id="addUserForm">
                                 <div class="row align-items-center mb-3">
                                     <div class="col-sm-4">

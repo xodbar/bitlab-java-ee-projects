@@ -62,14 +62,17 @@ public class DBManager {
         try {
             Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM items");
+            ResultSet resultSet = statement.executeQuery("SELECT it.item_id, it.item_name, " +
+                    "it.item_description, it.item_price, b.brand_id, b.brand_name " +
+                    "FROM items it INNER JOIN brands b ON b.brand_id = it.item_brand_id;");
             while (resultSet.next()) {
                 items.add(new Item(
                         resultSet.getLong("item_id"),
                         resultSet.getString("item_name"),
                         resultSet.getString("item_description"),
                         resultSet.getDouble("item_price"),
-                        resultSet.getLong("item_brand_id")
+                        resultSet.getLong("brand_id"),
+                        resultSet.getString("brand_name")
                 ));
             }
         } catch (SQLException e) {
@@ -87,8 +90,9 @@ public class DBManager {
         Item item = new Item();
 
         try {
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM items WHERE item_id=?"
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "SELECT it.item_id, it.item_name, it.item_description, it.item_price, b.brand_id, b.brand_name " +
+                    "FROM items it INNER JOIN brands b on b.brand_id = it.item_brand_id WHERE it.item_id = ?"
             );
 
             statement.setLong(1, id);
@@ -100,7 +104,8 @@ public class DBManager {
                         resultSet.getString("item_name"),
                         resultSet.getString("item_description"),
                         resultSet.getDouble("item_price"),
-                        resultSet.getLong("item_brand_id")
+                        resultSet.getLong("brand_id"),
+                        resultSet.getString("brand_name")
                 );
         } catch (SQLException e) {
             System.out.println(ANSI.ANSI_YELLOW_BACKGROUND + ANSI.ANSI_RED +
@@ -121,8 +126,8 @@ public class DBManager {
 
             statement.setString(1, item.getItemName());
             statement.setString(2, item.getDescription());
-            statement.setDouble(4, item.getPrice());
-            statement.setLong(3, item.getBrandId());
+            statement.setDouble(3, item.getPrice());
+            statement.setLong(4, item.getBrandId());
             statement.setLong(5, item.getItemId());
 
             statement.executeUpdate();
