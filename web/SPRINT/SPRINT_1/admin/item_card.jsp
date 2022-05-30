@@ -13,9 +13,11 @@
     <c:set var="currentItemEditObject" value="${requestScope.current_item_edit}"/>
     <c:set var="brandsList" value="${requestScope.brands_list}"/>
     <c:choose>
-        <c:when test="${not empty currentItemEditObject} && ${not empty brandsList}">
-            <h1 class="h1 text-center">User: ${currentItemEditObject.getItemName()}</h1>
-            <h3 class="fw-light text-dark mb-4 text-center">This is editing user page</h3>
+        <c:when test="${not empty currentItemEditObject}">
+            <c:choose>
+            <c:when test="${not empty brandsList}">
+            <h1 class="h1 text-center">Item: ${currentItemEditObject.getItemName()}</h1>
+            <h3 class="fw-light text-dark mb-4 text-center">This is editing item page</h3>
             <div class="mx-auto" style="width: 550px">
                 <form 
                         action="${pageContext.request.contextPath}/sprint1_admin?entity=item&command=2&id=${currentItemEditObject.getItemId()}"
@@ -75,12 +77,60 @@
                             Edit
                         </button>
                     </div>
-                    <div class="input-group mb-1">
-                        <button type="submit" class="btn-secondary" id="sendChanges" disabled>Save Changes</button>
+                    <div class="input-group mt-2 mb-3">
+                        <button type="submit" class="btn-secondary btn-outline-secondary w-100"
+                                id="sendChanges" disabled>
+                            Save Changes
+                        </button>
                     </div>
                 </form>
+                <button type="button" class="btn btn-danger w-100"
+                        data-bs-toggle="modal" data-bs-target="#deleteItemModal">
+                    Delete Item
+                </button>
+
+                <div class="modal fade" id="deleteItemModal" tabindex="-1" aria-labelledby="deleteItemModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteItemModalLabel">Are you sure?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you really want to delete this item?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <form action="${pageContext.request.contextPath}/sprint1_admin" method="post">
+                                    <input type="hidden" name="entity" value="item">
+                                    <input type="hidden" name="command" value="3">
+                                    <input type="hidden" name="delete_item_id"
+                                           value="${currentItemEditObject.getItemId()}">
+
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            </c:when>
+                <c:otherwise>
+                    <h3 class="h3">
+                        An error was occurred while loading the page.
+                        Back to the <a href="${pageContext.request.contextPath}/sprint1_admin?entity=items">list</a>?
+                    </h3>
+                </c:otherwise>
+            </c:choose>
         </c:when>
+        <c:otherwise>
+            <h3 class="h3">
+                An error was occurred while loading the page.
+                Back to the <a href="${pageContext.request.contextPath}/sprint1_admin?entity=items">list</a>?
+            </h3>
+        </c:otherwise>
     </c:choose>
 </div>
 </main>
@@ -130,6 +180,8 @@
             document.getElementById(buttonId).setAttribute("onclick", "allowEditing('" + elementId + "', '"
                 + buttonId + "')");
             document.getElementById(buttonId).innerText = 'Edit';
+
+            checkChanges();
         }
     }
 

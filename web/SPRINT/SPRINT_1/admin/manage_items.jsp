@@ -70,6 +70,7 @@
         <c:when test="${not empty brandsList}">
             <div class="modal fade" id="addItem" aria-hidden="true" aria-labelledby="addItemLabel" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addItemLabel">Add new item</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -88,11 +89,11 @@
                             </div>
                             <div class="row align-items-center mb-3">
                                 <div class="col-sm-4">
-                                    <label for="newItemPrice" class="col-form-label">Name:</label>
+                                    <label for="newItemPrice" class="col-form-label">Price ($):</label>
                                 </div>
                                 <div class="col-sm-8">
                                     <input type="number" id="newItemPrice" class="form-control"
-                                           min="0.99" max="999999.99" step="1.01"
+                                           min="0.99" max="999999.99" step="1.00" maxlength="8"
                                            name="new_item_price" required>
                                 </div>
                             </div>
@@ -110,7 +111,7 @@
                             </div>
                             <div class="row align-items-center mb-4">
                                 <div class="col-sm-4">
-                                    <label for="newItemDescription" class="col-form-label">Name:</label>
+                                    <label for="newItemDescription" class="col-form-label">Description:</label>
                                 </div>
                                 <div class="col-sm-8">
                                     <textarea type="text" id="newItemDescription" class="form-control"
@@ -123,6 +124,7 @@
                                         type="submit" id="newItemAddButton">Add</button>
                             </div>
                         </form>
+                    </div>
                     </div>
                 </div>
             </div>

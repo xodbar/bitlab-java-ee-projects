@@ -92,7 +92,7 @@
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <a href="#auth" class="nav-link btn btn-light text-primary p-1" id="authLink"
+                            <a href="#auth" class="nav-link btn btn-light text-primary fw-bold p-2" id="authLink"
                                data-bs-toggle="modal" role="button">
                                 Sign In/Up
                             </a>
@@ -151,7 +151,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="signupLabel">Modal 2</h5>
+                    <h5 class="modal-title" id="signupLabel">Sign Up</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

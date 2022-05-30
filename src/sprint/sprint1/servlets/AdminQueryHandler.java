@@ -37,7 +37,7 @@ public class AdminQueryHandler extends HttpServlet {
                                     if (((User) request.getSession().getAttribute("current_user")).getUserId().
                                             equals(DBManager.getUserById(1L).getUserId())) {
                                         try {
-                                            request.getRequestDispatcher("./SPRINT/SPRINT_1/admin/manage_items.jsp")
+                                            request.getRequestDispatcher("/sprint1_admin?entity=items")
                                                     .forward(request, response);
                                         } catch (ServletException e) {
                                             e.printStackTrace();
@@ -80,14 +80,9 @@ public class AdminQueryHandler extends HttpServlet {
                                     }
                                 }
                                 case "3" -> {
-                                    if (request.getParameter("current_id") != null) {
-                                        if (request.getParameter("current_id").equals(request.
-                                                getParameter("delete_item_id"))) {
-                                            request.getSession().removeAttribute("current_user");
-                                            DBManager.deleteItem(Long.parseLong(request.
-                                                    getParameter("delete_item_id")));
-                                            response.sendRedirect("/sprint1");
-                                        } else {
+                                    if (request.getSession().getAttribute("current_user") != null) {
+                                        if (((User) request.getSession().getAttribute("current_user")).
+                                                getEmail().equals(DBManager.getUserById(1L).getEmail())) {
                                             DBManager.deleteItem(Long.parseLong(request.
                                                     getParameter("delete_item_id")));
                                             response.sendRedirect("/sprint1_admin?entity=items");

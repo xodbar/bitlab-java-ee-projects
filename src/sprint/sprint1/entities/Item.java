@@ -16,7 +16,7 @@ public class Item {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.price = price;
+        this.price = (double) Math.round(price * 100) / 100;
         this.brandId = brandId;
         this.brandName = brandName;
     }

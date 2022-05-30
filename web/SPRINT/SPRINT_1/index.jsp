@@ -36,8 +36,8 @@
                             <div class="card-body">
                                 <h4 class="text-success size">$${item.getPrice()}</h4>
                                 <p class="card-text">${item.getDescription()}</p>
-                                <small class="small text-primary">${item.getBrandName()}</small>
-                                <button class="btn btn-success w-100">Buy Now</button>
+                                <small class="small text-primary mb-2">${item.getBrandName()}</small>
+                                <button class="btn btn-success w-100 mt-2">Buy Now</button>
                             </div>
                         </div>
                         </div>
