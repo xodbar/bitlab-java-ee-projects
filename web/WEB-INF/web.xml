@@ -95,4 +95,13 @@
         <servlet-name>Lec6Task1</servlet-name>
         <url-pattern>/lec6task1</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Lec6Task2</servlet-name>
+        <servlet-class>lectures.lecture6.task2.FormDraftServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Lec6Task2</servlet-name>
+        <url-pattern>/lec6task2</url-pattern>
+    </servlet-mapping>
 </web-app>
