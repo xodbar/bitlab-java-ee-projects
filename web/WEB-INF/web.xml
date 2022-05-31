@@ -80,10 +80,19 @@
 
     <servlet>
         <servlet-name>Lec4Task1</servlet-name>
-        <servlet-class>lectures.lecture4.servlets.StudentManagementServlet</servlet-class>
+        <servlet-class>lectures.lecture4_5.servlets.StudentManagementServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Lec4Task1</servlet-name>
         <url-pattern>/lec4task1</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Lec6Task1</servlet-name>
+        <servlet-class>lectures.lecture6.task1.SiteNameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Lec6Task1</servlet-name>
+        <url-pattern>/lec6task1</url-pattern>
     </servlet-mapping>
 </web-app>

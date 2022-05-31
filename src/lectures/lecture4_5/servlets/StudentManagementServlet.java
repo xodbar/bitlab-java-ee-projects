@@ -1,8 +1,8 @@
-package lectures.lecture4.servlets;
+package lectures.lecture4_5.servlets;
 
-import lectures.lecture4.db.DBManager;
-import lectures.lecture4.entities.City;
-import lectures.lecture4.entities.Student;
+import lectures.lecture4_5.db.DBManager;
+import lectures.lecture4_5.entities.City;
+import lectures.lecture4_5.entities.Student;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -89,25 +89,25 @@ public class StudentManagementServlet extends HttpServlet {
                         request.setAttribute("student",
                                 DBManager.getStudentById(Long.parseLong(request.getParameter("id"))));
                         request.setAttribute("cities", DBManager.getCities());
-                        request.getRequestDispatcher("/lectures/lecture4/task1/student_details.jsp")
+                        request.getRequestDispatcher("/lectures/lecture4_5/task1/student_details.jsp")
                                 .forward(request, response);
                     } else if (request.getParameter("command").equals("add")) {
                         request.setAttribute("cities", DBManager.getCities());
-                        request.getRequestDispatcher("/lectures/lecture4/task1/add_student.jsp").forward(request, response);
+                        request.getRequestDispatcher("/lectures/lecture4_5/task1/add_student.jsp").forward(request, response);
                     } else response.sendRedirect("/404");
                 } else if (request.getParameter("entity").equals("city")) {
                     if (request.getParameter("command").equals("details")) {
                         request.setAttribute("cities", DBManager.getCities());
                         request.setAttribute("city",
                                 DBManager.getCityById(Long.parseLong(request.getParameter("id"))));
-                        request.getRequestDispatcher("/lectures/lecture4/task1/city_details.jsp")
+                        request.getRequestDispatcher("/lectures/lecture4_5/task1/city_details.jsp")
                                 .forward(request, response);
                     } else if (request.getParameter("command").equals("list")) {
                         request.setAttribute("cities", DBManager.getCities());
-                        request.getRequestDispatcher("/lectures/lecture4/task1/cities.jsp").forward(request, response);
+                        request.getRequestDispatcher("/lectures/lecture4_5/task1/cities.jsp").forward(request, response);
                     } else if (request.getParameter("command").equals("add")) {
                         request.setAttribute("cities", DBManager.getCities());
-                        request.getRequestDispatcher("/lectures/lecture4/task1/add_city.jsp").forward(request, response);
+                        request.getRequestDispatcher("/lectures/lecture4_5/task1/add_city.jsp").forward(request, response);
                     } else response.sendRedirect("/404");
                 } else {
                     response.sendRedirect("./other/service/404.html");
@@ -115,7 +115,7 @@ public class StudentManagementServlet extends HttpServlet {
             } else {
                 request.setAttribute("students", DBManager.getAllStudents());
                 request.setAttribute("cities", DBManager.getCities());
-                request.getRequestDispatcher("/lectures/lecture4/task1/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/lectures/lecture4_5/task1/index.jsp").forward(request, response);
             }
         } catch (Exception e) {
             System.out.println("ERROR WHILE CALLING doGet: " + e.getMessage());

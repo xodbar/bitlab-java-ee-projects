@@ -1,7 +1,7 @@
-package lectures.lecture4.db;
+package lectures.lecture4_5.db;
 
-import lectures.lecture4.entities.City;
-import lectures.lecture4.entities.Student;
+import lectures.lecture4_5.entities.City;
+import lectures.lecture4_5.entities.Student;
 
 import java.sql.*;
 import java.util.ArrayList;

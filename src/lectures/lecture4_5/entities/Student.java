@@ -1,4 +1,4 @@
-package lectures.lecture4.entities;
+package lectures.lecture4_5.entities;
 
 public class Student {
     private Long id;

@@ -52,7 +52,7 @@ public class StudentManagementServlet extends HttpServlet {
                 if (request.getParameter("command").equals("details")) {
                     request.setAttribute("student",
                             DBManager.getStudentById(Long.parseLong(request.getParameter("id"))));
-                    request.getRequestDispatcher("/lectures/lecture4/task1/student_details.jsp")
+                    request.getRequestDispatcher("/lectures/lecture4_5/task1/student_details.jsp")
                             .forward(request, response);
                 } else {
                     response.sendRedirect("./other/service/404.html");
