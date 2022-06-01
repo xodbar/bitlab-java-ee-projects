@@ -45,7 +45,6 @@ public class FormDraftServlet extends HttpServlet {
                     }
                 }
 
-                System.out.println("HELL YEAH");
                 response.sendRedirect("/lec6task2");
             }
         }
