@@ -113,4 +113,13 @@
         <servlet-name>Lec6Task3</servlet-name>
         <url-pattern>/lec6task3</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Lec7Task1</servlet-name>
+        <servlet-class>lectures.lecture7.task1.SessionFormHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Lec7Task1</servlet-name>
+        <url-pattern>/lec7task1</url-pattern>
+    </servlet-mapping>
 </web-app>
