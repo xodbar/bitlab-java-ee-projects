@@ -1,6 +1,7 @@
-package sprint.sprint2uc.entities;
+package sprint.sprint2.entities;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class News {
     private Long id;
@@ -68,6 +69,10 @@ public class News {
         return postDate;
     }
 
+    public String getSimplePostDate() {
+        return new SimpleDateFormat("dd.MM.yy HH:mm").format(getPostDate());
+    }
+
     public void setPostDate(Timestamp postDate) {
         this.postDate = postDate;
     }
@@ -94,5 +99,21 @@ public class News {
 
     public void setPublicationId(Long publicationId) {
         this.publicationId = publicationId;
+    }
+
+    public String getPublicationName() {
+        return publicationName;
+    }
+
+    public void setPublicationName(String publicationName) {
+        this.publicationName = publicationName;
+    }
+
+    public String getLanguageCode() {
+        return languageCode;
+    }
+
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
     }
 }

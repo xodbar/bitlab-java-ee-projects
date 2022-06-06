@@ -140,4 +140,42 @@
         <servlet-name>Lec7Task3</servlet-name>
         <url-pattern>/lec7task3</url-pattern>
     </servlet-mapping>
+
+    <!-- SPRINT 2 SERVLETS START -->
+    <servlet>
+        <servlet-name>Sprint2News</servlet-name>
+        <servlet-class>sprint.sprint2.servlets.NewsFilterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sprint2News</servlet-name>
+        <url-pattern>/sprint2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Sprint2GetArticle</servlet-name>
+        <servlet-class>sprint.sprint2.servlets.IndexQueryHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sprint2GetArticle</servlet-name>
+        <url-pattern>/sprint2_article</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Sprint2Login</servlet-name>
+        <servlet-class>sprint.sprint2.servlets.LoginHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sprint2Login</servlet-name>
+        <url-pattern>/sprint2_login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Sprint2Admin</servlet-name>
+        <servlet-class>sprint.sprint2.servlets.AdminQueryHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sprint2Admin</servlet-name>
+        <url-pattern>/sprint2_admin</url-pattern>
+    </servlet-mapping>
+    <!-- SPRINT 2 SERVLETS END -->
 </web-app>

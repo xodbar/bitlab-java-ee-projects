@@ -1,4 +1,4 @@
-package sprint.sprint2uc.entities;
+package sprint.sprint2.entities;
 
 public class Language {
     private Long id;

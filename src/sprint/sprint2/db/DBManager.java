@@ -1,9 +1,9 @@
-package sprint.sprint2uc.db;
+package sprint.sprint2.db;
 
-import sprint.sprint2uc.entities.Language;
-import sprint.sprint2uc.entities.News;
-import sprint.sprint2uc.entities.Publication;
-import sprint.sprint2uc.entities.User;
+import sprint.sprint2.entities.Language;
+import sprint.sprint2.entities.News;
+import sprint.sprint2.entities.Publication;
+import sprint.sprint2.entities.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class DBManager {
         try {
             Class.forName("org.postgresql.Driver");
 
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/news_portal",
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/news_portal?useUnicode=true&amp;characterEncoding=UTF-8",
                     "postgres", "xodbar");
         } catch (ClassNotFoundException e) {
             System.out.println("Error while initializing driver:");
@@ -447,9 +447,12 @@ public class DBManager {
 
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT n.title, n.short_content, n.content, n.post_date, n.picture_url, n.language_id, l.code," +
-                            " n.publication_id, p.name FROM news AS n INNER JOIN languages l on n.language_id = l.id " +
-                            "INNER JOIN publications p on n.publication_id = p.id WHERE n.id=?;"
+                    "SELECT n.title as newsTitle, n.short_content as newsShortContent, " +
+                            "n.content as newsContent, n.post_date as newsPostDate, n.picture_url as newsPictureUrl," +
+                            " n.language_id as newsLangId, l.code as langCode, n.publication_id as newsPublicId, " +
+                            "p.name as publicName FROM news AS n" +
+                            " INNER JOIN languages l on l.id = n.language_id" +
+                            " INNER JOIN publications p on n.publication_id = p.id WHERE n.id=?;"
             );
 
             statement.setLong(1, id);
@@ -458,16 +461,125 @@ public class DBManager {
             while (resultSet.next())
                 news = new News(
                         id,
-                        resultSet.getString("n.title"),
-                        resultSet.getString("n.short_content"),
-                        resultSet.getString("n.content"),
-                        resultSet.getTimestamp("n.post_date"),
-                        resultSet.getString("n.picture_url"),
-                        resultSet.getLong("n.language_id"),
-                        resultSet.getString("l.code"),
-                        resultSet.getLong("n.publication_id"),
-                        resultSet.getString("p.")
+                        resultSet.getString("newsTitle"),
+                        resultSet.getString("newsShortContent"),
+                        resultSet.getString("newsContent"),
+                        resultSet.getTimestamp("newsPostDate"),
+                        resultSet.getString("newsPictureUrl"),
+                        resultSet.getLong("newsLangId"),
+                        resultSet.getString("langCode"),
+                        resultSet.getLong("newsPublicId"),
+                        resultSet.getString("publicName")
                 );
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return news;
+    }
+
+    public static ArrayList<News> getAllNews() {
+        ArrayList<News> news = new ArrayList<>();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT n.id as newsId, n.title as newsTitle, n.short_content as newsShortContent, " +
+                            "n.content as newsContent, n.post_date as newsPostDate, n.picture_url as newsPictureUrl," +
+                            " n.language_id as newsLangId, l.code as langCode, n.publication_id as newsPublicId, " +
+                            "p.name as publicName FROM news AS n" +
+                            " INNER JOIN languages l on l.id = n.language_id" +
+                            " INNER JOIN publications p on n.publication_id = p.id"
+            );
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
+                news.add(new News(
+                        resultSet.getLong("newsId"),
+                        resultSet.getString("newsTitle"),
+                        resultSet.getString("newsShortContent"),
+                        resultSet.getString("newsContent"),
+                        resultSet.getTimestamp("newsPostDate"),
+                        resultSet.getString("newsPictureUrl"),
+                        resultSet.getLong("newsLangId"),
+                        resultSet.getString("langCode"),
+                        resultSet.getLong("newsPublicId"),
+                        resultSet.getString("publicName")
+                ));
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return news;
+    }
+
+    public static ArrayList<News> getNewsByLanguage(String code) {
+        ArrayList<News> news = new ArrayList<>();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT n.id as newsId, n.title as newsTitle, n.short_content as newsShortContent, " +
+                            "n.content as newsContent, n.post_date as newsPostDate, n.picture_url as newsPictureUrl," +
+                            " n.language_id as newsLangId, l.code as langCode, n.publication_id as newsPublicId, " +
+                            "p.name as publicName FROM news AS n" +
+                            " INNER JOIN languages l on l.id = n.language_id" +
+                            " INNER JOIN publications p on n.publication_id = p.id WHERE l.code=?;"
+            );
+
+            statement.setString(1, code);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
+                news.add(new News(
+                        resultSet.getLong("newsId"),
+                        resultSet.getString("newsTitle"),
+                        resultSet.getString("newsShortContent"),
+                        resultSet.getString("newsContent"),
+                        resultSet.getTimestamp("newsPostDate"),
+                        resultSet.getString("newsPictureUrl"),
+                        resultSet.getLong("newsLangId"),
+                        code,
+                        resultSet.getLong("newsPublicId"),
+                        resultSet.getString("publicName")
+                ));
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return news;
+    }
+
+    public static ArrayList<News> getNewsByPublication(String pub) {
+        ArrayList<News> news = new ArrayList<>();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT n.id as newsId, n.title as newsTitle, n.short_content as newsShortContent, " +
+                            "n.content as newsContent, n.post_date as newsPostDate, n.picture_url as newsPictureUrl," +
+                            " n.language_id as newsLangId, l.code as langCode, n.publication_id as newsPublicId, " +
+                            "p.name as publicName FROM news AS n" +
+                            " INNER JOIN languages l on l.id = n.language_id" +
+                            " INNER JOIN publications p on n.publication_id = p.id WHERE p.name=?;"
+            );
+
+            statement.setString(1, pub);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
+                news.add(new News(
+                        resultSet.getLong("newsId"),
+                        resultSet.getString("newsTitle"),
+                        resultSet.getString("newsShortContent"),
+                        resultSet.getString("newsContent"),
+                        resultSet.getTimestamp("newsPostDate"),
+                        resultSet.getString("newsPictureUrl"),
+                        resultSet.getLong("newsLangId"),
+                        resultSet.getString("langCode"),
+                        resultSet.getLong("newsPublicId"),
+                        pub
+                ));
             statement.close();
         } catch (Exception e) {
             e.printStackTrace();
