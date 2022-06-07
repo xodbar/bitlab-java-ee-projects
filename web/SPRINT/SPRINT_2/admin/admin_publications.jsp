@@ -61,18 +61,16 @@
                                     <form action="${pageContext.request.contextPath}/sprint2_admin" method="post">
                                         <input type="hidden" name="entity" value="publication">
                                         <input type="hidden" name="command" value="create">
-                                        <div class="input-group">
+                                        <div class="input-group mb-3">
                                             <label for="pName" class="form-label col">Publication name:</label>
                                             <input type="text" id="pName" name="pName" class="form-control col"
                                                    required>
                                         </div>
-                                        <div class="input-group">
+                                        <div class="input-group mb-3">
                                             <label for="pDesc" class="form-label col">Description:</label>
-                                            <textarea name="pDesc" id="pDesc" cols="30" rows="10">
-
-                                            </textarea>
+                                            <textarea name="pDesc" id="pDesc" cols="30" rows="10"></textarea>
                                         </div>
-                                        <div class="input-group">
+                                        <div class="input-group mb-3">
                                             <label for="pRating" class="form-label col">Publication rating:</label>
                                             <input type="number" id="pRating" name="pRating" class="form-control col" maxlength="2" min="0.0" max="9.9" step="0.1"
                                                     required>

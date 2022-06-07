@@ -59,12 +59,12 @@
                                     <form action="${pageContext.request.contextPath}/sprint2_admin" method="post">
                                         <input type="hidden" name="entity" value="language">
                                         <input type="hidden" name="command" value="create">
-                                        <div class="input-group">
+                                        <div class="input-group mb-3">
                                             <label for="lName" class="form-label col">Language name:</label>
                                             <input type="text" id="lName" name="lName" class="form-control col"
                                                    required>
                                         </div>
-                                        <div class="input-group">
+                                        <div class="input-group mb-3">
                                             <label for="lCode" class="form-label col">Code:</label>
                                             <input type="text" name="lCode" id="lCode" class="form-control col"
                                                     maxlength="3" required>

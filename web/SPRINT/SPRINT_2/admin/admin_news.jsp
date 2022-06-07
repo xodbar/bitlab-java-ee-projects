@@ -22,7 +22,7 @@
             <button type="button" class="btn btn-primary fs-6 w-100 mb-3" data-bs-toggle="modal"
                     data-bs-target="#addPubModal">Add New News</button>
             <c:choose>
-                <c:when test="${not empty requestScope.news}">
+                <c:when test="${not empty requestScope.newsA}">
                     <table class="table table-hover table-responsive-md">
                         <thead>
                         <tr class="bg-dark text-light">
@@ -35,7 +35,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="news" items="${requestScope.news}">
+                        <c:forEach var="news" items="${requestScope.newsA}">
                             <tr>
                                 <td>${news.getNewsId()}</td>
                                 <td>${news.getNewsTitle()}</td>
@@ -52,7 +52,7 @@
                         </tbody>
                     </table>
 
-                    <div class="modal fade" id="addPubModal" tabindex="-1" aria-labelledby="addPubModalLabel" aria-hidden="true">
+                    <div class="modal fade modal-xl" id="addPubModal" tabindex="-1" aria-labelledby="addPubModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -63,38 +63,36 @@
                                     <form action="${pageContext.request.contextPath}/sprint2_admin" method="post">
                                         <input type="hidden" name="entity" value="news">
                                         <input type="hidden" name="command" value="create">
-                                        <input type="hidden" name="id" value="${requestScope.editObj.getNewsId()()}">
-                                        <div class="input-group">
-                                            <label for="nTitle" class="form-label col">News title:</label>
-                                            <input type="text" id="nTitle" name="nTitle" class="form-control col"
+                                        <input type="hidden" name="id" value="${requestScope.editObj.getNewsId()}">
+                                        <div class="input-group mb-3">
+                                            <label for="nTitle" class="form-label col-3">News title:</label>
+                                            <input type="text" id="nTitle" name="nTitle" class="form-control col-9"
                                                    required>
                                         </div>
-                                        <div class="input-group">
-                                            <label for="nShort" class="form-label col">Short content:</label>
-                                            <textarea name="nShort" cols="30" rows="10" id="nShort">
-                                            </textarea>
+                                        <div class="input-group mb-3">
+                                            <label for="nShort" class="form-label col-3">Short content:</label>
+                                            <textarea name="nShort" id="nShort" class="form-control col-9"></textarea>
                                         </div>
-                                        <div class="input-group">
-                                            <label for="textarea" class="form-label col">Content:</label>
-                                            <textarea name="nContent" cols="30" rows="10" id="textarea">
-                                            </textarea>
+                                        <div class="input-group mb-3">
+                                            <label for="textarea" class="form-label col-3">Content:</label>
+                                            <textarea name="nContent" id="textarea" class="form-control col-9"></textarea>
                                         </div>
-                                        <div class="input-group">
-                                            <label for="nPicUrl" class="form-label col">Picture URL:</label>
-                                            <input type="text" id="nPicUrl" name="nPicUrl" class="form-control col"
+                                        <div class="input-group mb-3">
+                                            <label for="nPicUrl" class="form-label col-3">Picture URL:</label>
+                                            <input type="text" id="nPicUrl" name="nPicUrl" class="form-control col-9"
                                                     required>
                                         </div>
-                                        <div class="input-group">
-                                            <label for="nLang" class="form-label col">Language:</label>
-                                            <select name="nLang" id="nLang" required class="form-control col">
+                                        <div class="input-group mb-3">
+                                            <label for="nLang" class="form-label col-3">Language:</label>
+                                            <select name="nLang" id="nLang" required class="form-control col-9">
                                                 <c:forEach var="language" items="${requestScope.languages}">
                                                     <option value="${language.getLanguageId()}">${language.getLanguageName()}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
-                                        <div class="input-group">
-                                            <label for="nPub" class="form-label col">Language:</label>
-                                            <select name="nPub" id="nPub" required class="form-control col">
+                                        <div class="input-group mb-3">
+                                            <label for="nPub" class="form-label col-3">Language:</label>
+                                            <select name="nPub" id="nPub" required class="form-control col-9">
                                                 <c:forEach var="publication" items="${requestScope.publications}">
                                                     <option value="${publication.getPublicationId()}">${publication.getPublicationName()}</option>
                                                 </c:forEach>

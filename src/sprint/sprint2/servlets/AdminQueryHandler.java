@@ -2,6 +2,7 @@ package sprint.sprint2.servlets;
 
 import sprint.sprint2.db.DBManager;
 import sprint.sprint2.entities.Language;
+import sprint.sprint2.entities.News;
 import sprint.sprint2.entities.Publication;
 import sprint.sprint2.entities.User;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class AdminQueryHandler extends HttpServlet {
     @Override
@@ -52,11 +54,13 @@ public class AdminQueryHandler extends HttpServlet {
                             case "create" -> {
                                 DBManager.addLanguage(new Language(
                                         null,
-                                        request.getParameter("lName"),
-                                        request.getParameter("lCode").toUpperCase()
+                                        new String(request.getParameter("lName")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8),
+                                        new String(request.getParameter("lCode")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)
                                 ));
 
-                                response.sendRedirect("/sprint2?entity=languages");
+                                response.sendRedirect("/sprint2_admin?entity=languages");
                             }
                             case "edit" -> {
                                 DBManager.updateLanguage(new Language(
@@ -65,11 +69,11 @@ public class AdminQueryHandler extends HttpServlet {
                                         request.getParameter("lCode")
                                 ));
 
-                                response.sendRedirect("/sprint2?entity=languages");
+                                response.sendRedirect("/sprint2_admin?entity=languages");
                             }
                             case "delete" -> {
                                 DBManager.deleteLanguage(Long.parseLong(request.getParameter("id")));
-                                response.sendRedirect("/sprint2?entity=languages");
+                                response.sendRedirect("/sprint2_admin?entity=languages");
                             }
                         }
                     }
@@ -79,7 +83,14 @@ public class AdminQueryHandler extends HttpServlet {
                     if (request.getParameter("command") != null) {
                         switch (request.getParameter("command")) {
                             case "create" -> {
+                                DBManager.addPublication(new Publication(
+                                        null,
+                                        request.getParameter("pName"),
+                                        request.getParameter("pDesc"),
+                                        Double.parseDouble(request.getParameter("pRating"))
+                                ));
 
+                                response.sendRedirect("/sprint2_admin?entity=publications");
                             }
                             case "edit" -> {
                                 DBManager.updatePublication(new Publication(
@@ -89,11 +100,66 @@ public class AdminQueryHandler extends HttpServlet {
                                         Double.parseDouble(request.getParameter("pRating"))
                                 ));
 
-                                response.sendRedirect("/sprint2");
+                                response.sendRedirect("/sprint2_admin?entity=publications");
                             }
                             case "delete" -> {
                                 DBManager.deletePublication(Long.parseLong(request.getParameter("id")));
-                                response.sendRedirect("/sprint2");
+                                response.sendRedirect("/sprint2_admin?entity=publications");
+                            }
+                        }
+                    }
+                }
+
+                case "news" -> {
+                    if (request.getParameter("command") != null) {
+                        switch (request.getParameter("command")) {
+                            case "create" -> {
+                                DBManager.addNews(new News(
+                                        null,
+                                        new String(request.getParameter("nTitle")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8),
+                                        new String(request.getParameter("nShort")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8),
+                                        new String(request.getParameter("nContent")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8),
+                                        null,
+                                        new String(request.getParameter("nPicUrl")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8),
+                                        Long.parseLong(request.getParameter("nLang")),
+                                        DBManager.getLanguageById(Long.parseLong(request.getParameter("nLang")))
+                                                .getCode(),
+                                        Long.parseLong(request.getParameter("nPub")),
+                                        DBManager.getPublicationById(Long.parseLong(request.getParameter("nPub")))
+                                                .getPublicationName()
+                                ));
+
+                                response.sendRedirect("/sprint2_admin?entity=newsA");
+                            }
+                            case "edit" -> {
+                                DBManager.updateNews(new News(
+                                        Long.parseLong(request.getParameter("id")),
+                                        new String(request.getParameter("nTitle")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8),
+                                        new String(request.getParameter("nShort")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8),
+                                        new String(request.getParameter("nContent")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8),
+                                        null,
+                                        new String(request.getParameter("nPicUrl")
+                                                .getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8),
+                                        Long.parseLong(request.getParameter("nLang")),
+                                        DBManager.getLanguageById(Long.parseLong(request.getParameter("nLang")))
+                                                .getCode(),
+                                        Long.parseLong(request.getParameter("nPub")),
+                                        DBManager.getPublicationById(Long.parseLong(request.getParameter("nPub")))
+                                                .getPublicationName()
+                                ));
+
+                                response.sendRedirect("/sprint2_admin?entity=newsA");
+                            }
+                            case "delete" -> {
+                                DBManager.deletePublication(Long.parseLong(request.getParameter("id")));
+                                response.sendRedirect("/sprint2_admin?entity=newsA");
                             }
                         }
                     }
@@ -124,6 +190,8 @@ public class AdminQueryHandler extends HttpServlet {
                 }
                 case "newsA" -> {
                     request.setAttribute("newsA", DBManager.getAllNews());
+                    request.setAttribute("languages", DBManager.getAllLanguages());
+                    request.setAttribute("publications", DBManager.getAllPublications());
                     request.getRequestDispatcher("./SPRINT/SPRINT_2/admin/admin_news.jsp")
                             .forward(request, response);
                 }
@@ -132,23 +200,29 @@ public class AdminQueryHandler extends HttpServlet {
             if (request.getParameter("command").equals("details")) {
                 switch (request.getParameter("entity")) {
                     case "user" -> {
-                        request.setAttribute("user", DBManager.getUserById(Long.parseLong(request.getParameter("id"))));
-                        request.getRequestDispatcher("./SPRINT/SPRINT_2/admin/admin_users.jsp")
+                        request.setAttribute("entity", "user");
+                        request.setAttribute("editObj", DBManager.getUserById(Long.parseLong(request.getParameter("id"))));
+                        request.getRequestDispatcher("./SPRINT/SPRINT_2/admin/current.jsp")
                                 .forward(request, response);
                     }
                     case "language" -> {
-                        request.setAttribute("language", DBManager.getLanguageById(Long.parseLong(request.getParameter("id"))));
-                        request.getRequestDispatcher("./SPRINT/SPRINT_2/admin/admin_languages.jsp")
+                        request.setAttribute("entity", "language");
+                        request.setAttribute("editObj", DBManager.getLanguageById(Long.parseLong(request.getParameter("id"))));
+                        request.getRequestDispatcher("./SPRINT/SPRINT_2/admin/current.jsp")
                                 .forward(request, response);
                     }
                     case "publication" -> {
-                        request.setAttribute("publication", DBManager.getPublicationById(Long.parseLong(request.getParameter("id"))));
-                        request.getRequestDispatcher("./SPRINT/SPRINT_2/admin/admin_publications.jsp")
+                        request.setAttribute("entity", "publication");
+                        request.setAttribute("editObj", DBManager.getPublicationById(Long.parseLong(request.getParameter("id"))));
+                        request.getRequestDispatcher("./SPRINT/SPRINT_2/admin/current.jsp")
                                 .forward(request, response);
                     }
                     case "news" -> {
-                        request.setAttribute("news", DBManager.getNewsById(Long.parseLong(request.getParameter("id"))));
-                        request.getRequestDispatcher("./SPRINT/SPRINT_2/admin/admin_news.jsp")
+                        request.setAttribute("entity", "news");
+                        request.setAttribute("editObj", DBManager.getNewsById(Long.parseLong(request.getParameter("id"))));
+                        request.setAttribute("languages", DBManager.getAllLanguages());
+                        request.setAttribute("publications", DBManager.getAllPublications());
+                        request.getRequestDispatcher("./SPRINT/SPRINT_2/admin/current.jsp")
                                 .forward(request, response);
                     }
                 }

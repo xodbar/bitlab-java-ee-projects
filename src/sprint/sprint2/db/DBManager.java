@@ -424,16 +424,15 @@ public class DBManager {
     public static void addNews(News news) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO news VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?);"
+                    "INSERT INTO news VALUES (DEFAULT, ?, ?, ?, NOW(), ?, ?, ?);"
             );
 
             statement.setString(1, news.getNewsTitle());
             statement.setString(2, news.getShortContent());
             statement.setString(3, news.getContent());
-            statement.setTimestamp(4, news.getPostDate());
-            statement.setString(5, news.getPictureUrl());
-            statement.setLong(6, news.getLanguageId());
-            statement.setLong(7, news.getPublicationId());
+            statement.setString(4, news.getPictureUrl());
+            statement.setLong(5, news.getLanguageId());
+            statement.setLong(6, news.getPublicationId());
 
             statement.executeUpdate();
             statement.close();
@@ -586,5 +585,27 @@ public class DBManager {
         }
 
         return news;
+    }
+
+    public static void updateNews(News news) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE news SET title=?, short_content=?, content=?, " +
+                            "picture_url=?, language_id=?, publication_id=? WHERE id=?"
+            );
+
+            statement.setString(1, news.getNewsTitle());
+            statement.setString(2, news.getShortContent());
+            statement.setString(3, news.getContent());
+            statement.setString(4, news.getPictureUrl());
+            statement.setLong(5, news.getLanguageId());
+            statement.setLong(6, news.getPublicationId());
+            statement.setLong(7, news.getNewsId());
+
+            statement.executeUpdate();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
