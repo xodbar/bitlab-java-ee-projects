@@ -74,8 +74,8 @@
                                             <textarea name="nShort" id="nShort" class="form-control col-9"></textarea>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <label for="textarea" class="form-label col-3">Content:</label>
-                                            <textarea name="nContent" id="textarea" class="form-control col-9"></textarea>
+                                            <label for="textareaContent" class="form-label col-3">Content:</label>
+                                            <textarea name="nContent" id="textareaContent" class="form-control col-9 textarea"></textarea>
                                         </div>
                                         <div class="input-group mb-3">
                                             <label for="nPicUrl" class="form-label col-3">Picture URL:</label>

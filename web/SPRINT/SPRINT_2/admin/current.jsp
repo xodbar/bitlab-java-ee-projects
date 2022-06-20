@@ -110,8 +110,8 @@
                         <textarea name="nShort" cols="30" rows="10" id="nShort" class="form-control col-9">${requestScope.editObj.getShortContent()}</textarea>
                     </div>
                     <div class="input-group mb-3">
-                        <label for="textarea" class="form-label col">Content:</label>
-                        <textarea name="nContent" cols="80" rows="25" id="textarea">${requestScope.editObj.getContent()}</textarea>
+                        <label for="textareaContent" class="form-label col">Content:</label>
+                        <textarea name="nContent" cols="80" rows="25" id="textareaContent">${requestScope.editObj.getContent()}</textarea>
                     </div>
                     <div class="input-group mb-3">
                         <label for="nPicUrl" class="form-label col-3">Picture URL:</label>

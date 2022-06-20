@@ -7,3 +7,21 @@
 
 <!-- FONT-AWESOME -->
 <script src="https://kit.fontawesome.com/145e892520.js" crossorigin="anonymous"></script>
+
+<script src='https://cdn.tiny.cloud/1/2bii7wdrzcznqb2usqwcnpb7ywuut89pju8t4jq492qr2p0i/tinymce/4/tinymce.min.js'></script>
+<script>
+    tinymce.init({
+        selector: '.textarea',
+        plugins: [
+            'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+            'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+            'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+        ],
+        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+            'alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
+        force_br_newlines : true,
+        force_p_newlines : false,
+        forced_root_block : ''
+    });
+</script>

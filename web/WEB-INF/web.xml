@@ -12,7 +12,16 @@
         <error-code>404</error-code>
         <location>/other/service/404.html</location>
     </error-page>
-    
+
+    <servlet>
+        <servlet-name>Lec1AddTask2</servlet-name>
+        <servlet-class>lectures.lecture1.additional.servlets.task2.TableGeneratorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Lec1AddTask2</servlet-name>
+        <url-pattern>/lec1task2add</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>Lec2Task1</servlet-name>
         <servlet-class>lectures.lecture2.task1.servlets.RequestHandler</servlet-class>
@@ -178,4 +187,49 @@
         <url-pattern>/sprint2_admin</url-pattern>
     </servlet-mapping>
     <!-- SPRINT 2 SERVLETS END -->
+
+    <servlet>
+        <servlet-name>FreelanceXLoginHandler</servlet-name>
+        <servlet-class>big_project.servlets.main.LoginHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FreelanceXLoginHandler</servlet-name>
+        <url-pattern>/freelancex/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FreelanceXPostHandler</servlet-name>
+        <servlet-class>big_project.servlets.main.PostHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FreelanceXPostHandler</servlet-name>
+        <url-pattern>/freelancex</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FreelanceXCommentHandler</servlet-name>
+        <servlet-class>big_project.servlets.main.CommentHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FreelanceXCommentHandler</servlet-name>
+        <url-pattern>/freelancex/comments</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FreelanceXProfile</servlet-name>
+        <servlet-class>big_project.servlets.main.ProfileChangesHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FreelanceXProfile</servlet-name>
+        <url-pattern>/freelancex/profile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FreelanceXAdmin</servlet-name>
+        <servlet-class>big_project.servlets.admin.AdminQueryHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FreelanceXAdmin</servlet-name>
+        <url-pattern>/freelancex/admin</url-pattern>
+    </servlet-mapping>
 </web-app>

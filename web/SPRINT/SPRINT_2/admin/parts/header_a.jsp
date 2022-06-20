@@ -3,7 +3,10 @@
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
-        selector: '#textarea'
+        selector: '#textarea',
+        force_br_newlines : true,
+        force_p_newlines : false,
+        forced_root_block : ''
     });
 </script>
 
